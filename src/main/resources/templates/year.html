@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+<!--/*/ <th:block th:include ="index.html :: header"></th:block> /*/-->
+
+<head>
+    <link rel="stylesheet" type="text/css" href="awesomplete.css" />
+</head>
+
+<body>
+<!--/*/ <th:block th:include ="index.html :: topbar"></th:block> /*/-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!--/*/ <th:block th:insert ="index.html :: menu"></th:block> /*/-->
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+            <form action="#"  method="post">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Wybierz stacje dla której chcesz wyświetlić dane</span>
+                    </div>
+                    <input type="text" class="form-control awesomplete" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" list="mylist" th:field="*{year.stationName}"/>
+                    <datalist id="mylist">
+                        <option th:each="item:${year.listOfStationForYearData}" th:text="${item}"></option>
+
+                    </datalist>
+                </div>
+            </form>
+            <div class="py-5 text-center">
+                <h5>Średnie opady deszczu w dzień</h5>
+                <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+            </div>
+        </main>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script th:inline = "javascript">
+      var ctx = document.getElementById("myChart");
+      var month = [];
+      var rain = [];
+      /*<![CDATA[*/
+
+      /*[# th:each="itemm : ${year.dataSingleStationYear}"]*/
+        var miesiac = /*[[${itemm.rok}]]*/;
+        var opad = /*[[${itemm.opad_dzien}]]*/ ;
+      month.push(miesiac);
+      rain.push(opad);
+      /*[/]*/
+/*]]>*/
+
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+
+          labels: month,
+          datasets: [{
+            data: rain,
+
+
+
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+          }]
+        },
+        options: {
+          scales: {
+            xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Miesiąc'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Opad (mm)'
+						}
+					}]
+          },
+          legend: {
+            display: false,
+          }
+        }
+      });
+
+    </script>
+
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+      feather.replace()
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="awesomplete.js" ></script>
+</body>
+</html>
