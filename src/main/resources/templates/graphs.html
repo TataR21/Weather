@@ -21,7 +21,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Wybierz stacje dla której chcesz wyświetlić dane</span>
                     </div>
-                    <input type="text" class="form-control awesomplete" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" list="mylist" th:field="*{graphs.stationName}"/>
+                    <input type="text" class="dropdown-input" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" list="mylist" th:field="*{graphs.stationName}"/>
                     <datalist id="mylist">
                         <option th:each="item:${graphs.listOfStationForMonthdata}" th:text="${item}"></option>
 
@@ -32,11 +32,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="xxx">Podaj rok (2001 - 2020) </span>
                     </div>
-                    <input type="text" class="form-control awesomplete" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" list="mylist2" th:field="*{graphs.year}"/>
-                    <datalist id="mylist2">
-                        <option th:each="item:${graphs.listOfStationForMonthdata}" th:text="${item}"></option>
-
-                    </datalist>
+                    <input type="text" class="form-control awesomplete" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" th:field="*{graphs.year}"/>
                 </div>
                 <input type="submit" value="Szukaj" class="btn btn-sm btn-outline-secondary" />
             </form>
@@ -277,6 +273,25 @@
       });
 
     </script>
+
+<script>
+    var comboplete = new Awesomplete('input.dropdown-input', {
+	minChars: 0,
+});
+Awesomplete.$('.dropdown-btn').addEventListener("click", function() {
+	if (comboplete.ul.childNodes.length === 0) {
+		comboplete.minChars = 0;
+		comboplete.evaluate();
+	}
+	else if (comboplete.ul.hasAttribute('hidden')) {
+		comboplete.open();
+	}
+	else {
+		comboplete.close();
+	}
+});
+</script>
+
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
       feather.replace()

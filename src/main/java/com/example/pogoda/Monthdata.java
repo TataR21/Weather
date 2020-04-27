@@ -31,6 +31,8 @@ public class Monthdata {
     private String pppm;
     private String opad_dzien;
     private String wodz;
+    private String opad_noc;
+    private String wono;
 
     public Monthdata() {}
 
@@ -60,7 +62,7 @@ public class Monthdata {
         this.wono = wono;
     }
 
-    private String opad_noc;
+
 
     public String getId() {
         return id;
@@ -246,7 +248,7 @@ public class Monthdata {
         this.wono = wono;
     }
 
-    private String wono;
+
 
 
 }

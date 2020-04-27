@@ -29,8 +29,14 @@
                 </div>
             </form>
             <div class="py-5 text-center">
-                <h5>Średnie opady deszczu w dzień</h5>
+                <h5>Średnie opady deszczu</h5>
                 <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+                <h5>Średnia temperatura</h5>
+                <canvas class="my-4" id="myChart2" width="900" height="380"></canvas>
+                <h5>Średnia prędkość wiatru</h5>
+                <canvas class="my-4" id="myChart3" width="900" height="380"></canvas>
+                <h5>Średnie ciśnienie</h5>
+                <canvas class="my-4" id="myChart4" width="900" height="380"></canvas>
             </div>
         </main>
     </div>
@@ -81,6 +87,174 @@
 						scaleLabel: {
 							display: true,
 							labelString: 'Opad (mm)'
+						}
+					}]
+          },
+          legend: {
+            display: false,
+          }
+        }
+      });
+
+    </script>
+
+<script th:inline = "javascript">
+      var ctx = document.getElementById("myChart2");
+      var month = [];
+      var rain = [];
+      /*<![CDATA[*/
+
+      /*[# th:each="itemm : ${year.dataSingleStationYear}"]*/
+        var miesiac = /*[[${itemm.rok}]]*/;
+        var opad = /*[[${itemm.temperatura}]]*/;
+      month.push(miesiac);
+      rain.push(opad);
+      /*[/]*/
+/*]]>*/
+
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+
+          labels: month,
+          datasets: [{
+            data: rain,
+
+
+
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+          }]
+        },
+        options: {
+          scales: {
+            xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Miesiąc'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Temperatura ' +'('+'\u2103'+')'
+						}
+					}]
+          },
+          legend: {
+            display: false,
+          }
+        }
+      });
+
+    </script>
+
+<script th:inline = "javascript">
+      var ctx = document.getElementById("myChart3");
+      var month = [];
+      var rain = [];
+      /*<![CDATA[*/
+
+      /*[# th:each="itemm : ${year.dataSingleStationYear}"]*/
+        var miesiac = /*[[${itemm.rok}]]*/;
+        var opad = /*[[${itemm.predkosc_wiatru}]]*/;
+      month.push(miesiac);
+      rain.push(opad);
+      /*[/]*/
+/*]]>*/
+
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+
+          labels: month,
+          datasets: [{
+            data: rain,
+
+
+
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+          }]
+        },
+        options: {
+          scales: {
+            xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Miesiąc'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Prędkość wiatru (m/s)'
+						}
+					}]
+          },
+          legend: {
+            display: false,
+          }
+        }
+      });
+
+    </script>
+
+<script th:inline = "javascript">
+      var ctx = document.getElementById("myChart4");
+      var month = [];
+      var rain = [];
+      /*<![CDATA[*/
+
+      /*[# th:each="itemm : ${year.dataSingleStationYear}"]*/
+        var miesiac = /*[[${itemm.rok}]]*/;
+        var opad = /*[[${itemm.cisnienie_stacja}]]*/ ;
+      month.push(miesiac);
+      rain.push(opad);
+      /*[/]*/
+/*]]>*/
+
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+
+          labels: month,
+          datasets: [{
+            data: rain,
+
+
+
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+          }]
+        },
+        options: {
+          scales: {
+            xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Miesiąc'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Ciśnienie (hPa)'
 						}
 					}]
           },

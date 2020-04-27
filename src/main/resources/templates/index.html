@@ -23,8 +23,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
-
-    <title>Ranking</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://icons-for-free.com/iconfiles/png/512/forecast+partly+cloudy+weather+icon-1320196484400215944.png" />
+    <title>Pogoda</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +36,7 @@
 <body>
 <div th:fragment = "topbar">
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="index">Pogoda</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="\">Pogoda</a>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
             </li>
@@ -51,9 +51,15 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="index">
+                            <a class="nav-link active" href="\">
                                 <span data-feather="home"></span>
                                 Aktualna pogoda <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="forecast">
+                                <span data-feather="bar-chart-2"></span>
+                                Prognoza pogody
                             </a>
                         </li>
                         <li class="nav-item">
@@ -63,72 +69,24 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="compare">
+                                <span data-feather="copy"></span>
+                                Pogoda archiwalna porównanie
+                            </a>
+                        </li>
+                        <!--
+                        <li class="nav-item">
                             <a class="nav-link" href="year">
-                                <span data-feather="shopping-cart"></span>
+                                <span data-feather="bar-chart-2"></span>
                                 Pogoda archiwalna roczna
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="users"></span>
-                                Customers
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="bar-chart-2"></span>
-                                Reports
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="layers"></span>
-                                Integrations
-                            </a>
-                        </li>
-                    </ul>
-
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Saved reports</span>
-                        <a class="d-flex align-items-center text-muted" href="#">
-                            <span data-feather="plus-circle"></span>
-                        </a>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Current month
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Last quarter
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Social engagement
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Year-end sale
-                            </a>
-                        </li>
+                        -->
                     </ul>
                 </div>
             </nav>
 
-
-
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-
-
-
 
         <div id="mapid" style="width: 75%; height: 600px; margin-left: auto; margin-right: auto;"></div>
 

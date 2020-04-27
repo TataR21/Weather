@@ -6,11 +6,15 @@ public class YearData {
     private String rok;
    // private String zachmurzenie;
     private String predkosc_wiatru;
+    private String fws;
     private String temperatura;
+    private String temp;
    // private String temp;
     //private String cisnienie_pary;
     private String wilgotnosc;
+    private String wlgs;
     private String cisnienie_stacja;
+    private String ppps;
    // private String cisnienie_morze;
     private String opad_dzien;
 

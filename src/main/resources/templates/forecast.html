@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" >
+<!--/*/ <th:block th:include ="index.html :: header"></th:block> /*/-->
+<style>
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 20px;
+  color: black;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 20px;
+  color: black;
+}
+#firstTable, #secondTable {
+  table-layout: fixed;
+  width: 100%;
+}
+.invert {
+filter: invert(100%);
+}
+</style>
+<head>
+    <link rel="stylesheet" type="text/css" href="awesomplete.css" />
+</head>
+
+<body>
+<!--/*/ <th:block th:include ="index.html :: topbar"></th:block> /*/-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!--/*/ <th:block th:insert ="index.html :: menu"></th:block> /*/-->
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <form action="#" method="post" id="form-id" >
+                <input type="hidden" id="input1" name="email" th:field="*{forecast.stationLat}" />
+                <input type="hidden" id="input2" name="email" th:field="*{forecast.stationLon}" />
+                <input type="hidden" id="input3" name="email" th:field="*{forecast.nazwaStacji}" />
+            </form>
+                <div id="mapid" style="width: 75%; height: 600px; margin-left: auto; margin-right: auto;"></div>
+            <div class="py-5 text-center">
+                <h2 th:text = "${forecast.nazwaStacji}"> </h2>
+            </div>
+        </main>
+        <div id="carousel1" class="carousel slide" data-ride="carousel" data-interval="false" >
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <table class="table table-borderless" style="margin-left:40px;" id="firstTable">
+                        <thead>
+                        <tr>
+                            <th scope="col" th:each="item : ${forecast.firstDay}" th:text = "${item.date}" ></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:each="item : ${forecast.firstDay}" ><img  th:src = "${item.cloudIcon}" title="Pogoda" class="invert"></img></td>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.firstDay}" th:text = "${item.temp}"> </th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.firstDay}" th:text = "${item.feelsLike}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.firstDay}" th:text = "${item.pressure}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.firstDay}" th:text = "${item.humidity}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.firstDay}" th:text = "${item.wind_speed}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="carousel-item">
+                    <table class="table table-borderless" style="margin-left:40px;" id="secondTable">
+                        <thead>
+                        <tr>
+                            <th scope="col" th:each="item : ${forecast.secondDay}" th:text = "${item.date}" ></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:each="item : ${forecast.secondDay}" ><img  th:src = "${item.cloudIcon}" title="Pogoda" class="invert"></img></td>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.secondDay}" th:text = "${item.temp}"> </th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.secondDay}" th:text = "${item.feelsLike}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.secondDay}" th:text = "${item.pressure}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.secondDay}" th:text = "${item.humidity}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.secondDay}" th:text = "${item.wind_speed}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="carousel-item">
+                    <table class="table table-borderless" style="margin-left:40px;" id="thirdTable">
+                        <thead>
+                        <tr>
+                            <th scope="col" th:each="item : ${forecast.thirdDay}" th:text = "${item.date}" ></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:each="item : ${forecast.thirdDay}" ><img  th:src = "${item.cloudIcon}" title="Pogoda" class="invert"></img></td>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.thirdDay}" th:text = "${item.temp}"> </th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.thirdDay}" th:text = "${item.feelsLike}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.thirdDay}" th:text = "${item.pressure}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.thirdDay}" th:text = "${item.humidity}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.thirdDay}" th:text = "${item.wind_speed}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="carousel-item">
+                    <table class="table table-borderless" style="margin-left:40px;" id="fourthTable">
+                        <thead>
+                        <tr>
+                            <th scope="col" th:each="item : ${forecast.fourthDay}" th:text = "${item.date}" ></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:each="item : ${forecast.fourthDay}" ><img  th:src = "${item.cloudIcon}" title="Pogoda" class="invert"></img></td>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.fourthDay}" th:text = "${item.temp}"> </th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.fourthDay}" th:text = "${item.feelsLike}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.fourthDay}" th:text = "${item.pressure}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.fourthDay}" th:text = "${item.humidity}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.fourthDay}" th:text = "${item.wind_speed}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="carousel-item">
+                    <table class="table table-borderless" style="margin-left:40px;" id="fifthTable">
+                        <thead>
+                        <tr>
+                            <th scope="col" th:each="item : ${forecast.fifthDay}" th:text = "${item.date}" ></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:each="item : ${forecast.fifthDay}" ><img  th:src = "${item.cloudIcon}" title="Pogoda" class="invert"></img></td>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.fifthDay}" th:text = "${item.temp}"> </th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.fifthDay}" th:text = "${item.feelsLike}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.fifthDay}" th:text = "${item.pressure}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.fifthDay}" th:text = "${item.humidity}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.fifthDay}" th:text = "${item.wind_speed}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="carousel-item">
+                    <table class="table table-borderless" style="margin-left:40px;" id="sixthTable">
+                        <thead>
+                        <tr>
+                            <th scope="col" th:each="item : ${forecast.sixthDay}" th:text = "${item.date}" ></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:each="item : ${forecast.sixthDay}" ><img  th:src = "${item.cloudIcon}" title="Pogoda" class="invert"></img></td>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.sixthDay}" th:text = "${item.temp}"> </th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.sixthDay}" th:text = "${item.feelsLike}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.sixthDay}" th:text = "${item.pressure}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.sixthDay}" th:text = "${item.humidity}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.sixthDay}" th:text = "${item.wind_speed}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="carousel-item">
+                    <table class="table table-borderless" style="margin-left:40px;" id="seventhTable">
+                        <thead>
+                        <tr>
+                            <th scope="col" th:each="item : ${forecast.seventhDay}" th:text = "${item.date}" ></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:each="item : ${forecast.seventhDay}" ><img  th:src = "${item.cloudIcon}" title="Pogoda" class="invert"></img></td>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.seventhDay}" th:text = "${item.temp}"> </th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.seventhDay}" th:text = "${item.feelsLike}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.seventhDay}" th:text = "${item.pressure}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.seventhDay}" th:text = "${item.humidity}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.seventhDay}" th:text = "${item.wind_speed}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="carousel-item">
+                    <table class="table table-borderless" style="margin-left:40px;" id="eighthTable">
+                        <thead>
+                        <tr>
+                            <th scope="col" th:each="item : ${forecast.eighthDay}" th:text = "${item.date}" ></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:each="item : ${forecast.eighthDay}" ><img  th:src = "${item.cloudIcon}" title="Pogoda" class="invert"></img></td>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.eighthDay}" th:text = "${item.temp}"> </th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.eighthDay}" th:text = "${item.feelsLike}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.eighthDay}" th:text = "${item.pressure}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.eighthDay}" th:text = "${item.humidity}"></th>
+                        </tr>
+                        <tr>
+                            <th th:each="item : ${forecast.eighthDay}" th:text = "${item.wind_speed}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel1" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+function submit(){
+    if(var==1){
+        return true;
+    }
+    else{
+        alert("Please check value of VAR")
+        return false;
+    }
+}
+</script>
+<script th:inline = "javascript">
+var mymap = L.map('mapid').setView([51.7687323, 19.4569911], 6);
+/*<![CDATA[*/
+
+/*[# th:each="itemm : ${forecast.listOfStation}"]*/
+var latt = /*[[${itemm.lat}]]*/;
+latt = latt.replace('\r','');
+var lonn = /*[[${itemm.lon}]]*/;
+lonn = lonn.replace('\r','');
+var marker = L.marker([latt, lonn]).addTo(mymap).on('click', onClick);;
+var station = /*[[${itemm.nazwa_stacji}]]*/;
+var message = "Nazwa stacji: " + station;
+marker.bindPopup( message );
+marker.on('mouseover', function (e) {
+            this.openPopup();
+        });
+        marker.on('mouseout', function (e) {
+            this.closePopup();
+        });
+/*[/]*/
+/*]]>*/
+
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(mymap);
+
+function onClick(e) {
+var coord = e.latlng;
+  var lat = coord.lat;
+  var lng = coord.lng;
+  var popup = e.target.getPopup();
+   var content = popup.getContent();
+document.getElementById("input1").value = lat;
+document.getElementById("input2").value = lng;
+document.getElementById("input3").value = content;
+
+  //alert("You clicked the map at latitude: " + lat + " and longitude: " + lng);
+//var latlng = map.mouseEventToLatLng(ev.originalEvent);
+ // alert(latlng.lat + ', ' + latlng.lng);
+document.getElementById('form-id').submit();
+
+}
+</script>
+
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+      feather.replace()
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="awesomplete.js" ></script>
+</body>
+</html>
