@@ -10,7 +10,6 @@ public class Monthdata {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-
     private String kod;
     private String nazwa_stacji;
     private String rok;

@@ -59,6 +59,7 @@ public class TableController {
         for(int i = 0; i<json.getAsJsonArray("array").size();i++) {
             String idStation = json.getAsJsonArray("array").get(i).getAsJsonObject().get("id_stacji").toString();
             idStation = idStation.replaceAll("\"","");
+            idStation = idStation.replaceAll("\\","");
             String stationName = json.getAsJsonArray("array").get(i).getAsJsonObject().get("stacja").toString();
             stationName = stationName.replaceAll("\"","");
             String date = json.getAsJsonArray("array").get(i).getAsJsonObject().get("data_pomiaru").toString();
