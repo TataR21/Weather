@@ -38,8 +38,14 @@
                 <input type="submit" value="Szukaj" class="btn btn-sm btn-outline-secondary" />
             </form>
             <div class="py-5 text-center">
-            <h5>Średnie opady deszczu w dzień</h5>
-            <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+                <h5>Średnie opady deszczu w dzień</h5>
+                <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+                <h5>Średnia temperatura</h5>
+                <canvas class="my-4" id="myChart2" width="900" height="380"></canvas>
+                <h5>Średnia prędkość wiatru</h5>
+                <canvas class="my-4" id="myChart3" width="900" height="380"></canvas>
+                <h5>Średnie ciśnienie</h5>
+                <canvas class="my-4" id="myChart4" width="900" height="380"></canvas>
             </div>
         </main>
     </div>
@@ -122,6 +128,241 @@
       });
 
     </script>
+
+<script th:inline = "javascript">
+      var ctx = document.getElementById("myChart2");
+      var data1 = [];
+      var data2 =[];
+      var rain = [];
+      var rain2 = [];
+      var dataname1;
+      var dataname2;
+     /*<![CDATA[*/
+      /*[# th:each="itemm : ${compare.dataSingleStation}"]*/
+        var miesiac = /*[[${itemm.miesiac}]]*/;
+        var opad = /*[[${itemm.temperatura}]]*/ ;
+        var dataname1 = /*[[${itemm.nazwa_stacji}]]*/ ;
+      data1.push(miesiac);
+      rain.push(opad);
+      /*[/]*/
+/*]]>*/
+
+ /*<![CDATA[*/
+      /*[# th:each="itemm : ${compare.dataSingleStation2}"]*/
+        var miesiac2 = /*[[${itemm.miesiac}]]*/;
+        var opad2 = /*[[${itemm.temperatura}]]*/ ;
+        var dataname2 = /*[[${itemm.nazwa_stacji}]]*/ ;
+      data2.push(miesiac2);
+      rain2.push(opad2);
+      /*[/]*/
+/*]]>*/
+
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+
+          labels: data1,
+          datasets: [{
+          label : dataname1,
+            data: rain,
+
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+          },{
+          label : dataname2,
+            data:  rain2,
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#B22222',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+            }
+
+        ]},
+        options: {
+          scales: {
+            xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Miesiąc'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Temperatura ' +'('+'\u2103'+')'
+						}
+					}]
+          },
+          legend: {
+            display: true,
+          }
+        }
+      });
+
+    </script>
+
+<script th:inline = "javascript">
+      var ctx = document.getElementById("myChart3");
+      var data1 = [];
+      var data2 =[];
+      var rain = [];
+      var rain2 = [];
+      var dataname1;
+      var dataname2;
+     /*<![CDATA[*/
+      /*[# th:each="itemm : ${compare.dataSingleStation}"]*/
+        var miesiac = /*[[${itemm.miesiac}]]*/;
+        var opad = /*[[${itemm.predkosc_wiatru}]]*/ ;
+        var dataname1 = /*[[${itemm.nazwa_stacji}]]*/ ;
+      data1.push(miesiac);
+      rain.push(opad);
+      /*[/]*/
+/*]]>*/
+
+ /*<![CDATA[*/
+      /*[# th:each="itemm : ${compare.dataSingleStation2}"]*/
+        var miesiac2 = /*[[${itemm.miesiac}]]*/;
+        var opad2 = /*[[${itemm.predkosc_wiatru}]]*/ ;
+        var dataname2 = /*[[${itemm.nazwa_stacji}]]*/ ;
+      data2.push(miesiac2);
+      rain2.push(opad2);
+      /*[/]*/
+/*]]>*/
+
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+
+          labels: data1,
+          datasets: [{
+          label : dataname1,
+            data: rain,
+
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+          },{
+          label : dataname2,
+            data:  rain2,
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#B22222',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+            }
+
+        ]},
+        options: {
+          scales: {
+            xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Miesiąc'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Prędkość wiatru (m/s)'
+						}
+					}]
+          },
+          legend: {
+            display: true,
+          }
+        }
+      });
+
+    </script>
+
+<script th:inline = "javascript">
+      var ctx = document.getElementById("myChart4");
+      var data1 = [];
+      var data2 =[];
+      var rain = [];
+      var rain2 = [];
+      var dataname1;
+      var dataname2;
+     /*<![CDATA[*/
+      /*[# th:each="itemm : ${compare.dataSingleStation}"]*/
+        var miesiac = /*[[${itemm.miesiac}]]*/;
+        var opad = /*[[${itemm.cisnienie_stacja}]]*/ ;
+        var dataname1 = /*[[${itemm.nazwa_stacji}]]*/ ;
+      data1.push(miesiac);
+      rain.push(opad);
+      /*[/]*/
+/*]]>*/
+
+ /*<![CDATA[*/
+      /*[# th:each="itemm : ${compare.dataSingleStation2}"]*/
+        var miesiac2 = /*[[${itemm.miesiac}]]*/;
+        var opad2 = /*[[${itemm.cisnienie_stacja}]]*/ ;
+        var dataname2 = /*[[${itemm.nazwa_stacji}]]*/ ;
+      data2.push(miesiac2);
+      rain2.push(opad2);
+      /*[/]*/
+/*]]>*/
+
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+
+          labels: data1,
+          datasets: [{
+          label : dataname1,
+            data: rain,
+
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+          },{
+          label : dataname2,
+            data:  rain2,
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#B22222',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+            }
+
+        ]},
+        options: {
+          scales: {
+            xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Miesiąc'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Ciśnienie (hPa)'
+						}
+					}]
+          },
+          legend: {
+            display: true,
+          }
+        }
+      });
+
+    </script>
+
 <script>
     var comboplete = new Awesomplete('input.dropdown-input', {
 	minChars: 0,

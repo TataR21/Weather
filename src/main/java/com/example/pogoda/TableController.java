@@ -59,7 +59,9 @@ public class TableController {
         for(int i = 0; i<json.getAsJsonArray("array").size();i++) {
             String idStation = json.getAsJsonArray("array").get(i).getAsJsonObject().get("id_stacji").toString();
             idStation = idStation.replaceAll("\"","");
-            idStation = idStation.replaceAll("\\","");
+            //String z = ;
+           // idStation = idStation.replaceAll("\\\\","");
+
             String stationName = json.getAsJsonArray("array").get(i).getAsJsonObject().get("stacja").toString();
             stationName = stationName.replaceAll("\"","");
             String date = json.getAsJsonArray("array").get(i).getAsJsonObject().get("data_pomiaru").toString();
@@ -393,8 +395,11 @@ public class TableController {
         monthdataRepository.findAll().forEach(table.monthdata::add);
         for(Monthdata i: table.monthdata) {
             i.setNazwa_stacji(i.getNazwa_stacji().replaceAll("\"", ""));
+            i.setNazwa_stacji(i.getNazwa_stacji().replaceAll("\\\\",""));
             i.setRok(i.getRok().replaceAll("\"", ""));
+            i.setRok(i.getRok().replaceAll("\\\\",""));
             i.setMiesiac(i.getMiesiac().replaceAll("\"", ""));
+            i.setMiesiac(i.getMiesiac().replaceAll("\\\\",""));
             if (i.getNazwa_stacji().equals("POZNAŃ-ŁAWICA")) {
                 i.setNazwa_stacji("POZNAŃ");
             }
