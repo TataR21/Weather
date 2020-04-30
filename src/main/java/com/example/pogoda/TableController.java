@@ -60,7 +60,7 @@ public class TableController {
             String idStation = json.getAsJsonArray("array").get(i).getAsJsonObject().get("id_stacji").toString();
             idStation = idStation.replaceAll("\"","");
             //String z = ;
-           // idStation = idStation.replaceAll("\\\\","");
+            idStation = idStation.replaceAll("\\\\","");
 
             String stationName = json.getAsJsonArray("array").get(i).getAsJsonObject().get("stacja").toString();
             stationName = stationName.replaceAll("\"","");
