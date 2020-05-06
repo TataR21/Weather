@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 
@@ -28,9 +27,6 @@ public class TableController {
     private TableCurrentWeather tableCurrentWeather;
     @GetMapping("/")
     public String tableForm(Model model, @ModelAttribute TableCurrentWeather table) throws IOException {
-        // This returns a JSON or XML with the users
-        //Iterable<Edit2> getAllUsers();
-        //Edit2 edit2 = edit2Repository.findById(1).get();
         edit2Repository.findAll().forEach(table.listOfStation::add);
         for(Edit2 i: table.listOfStation) {
             int londegrees = Integer.parseInt(i.getLon().substring(0,2));
@@ -43,7 +39,6 @@ public class TableController {
             i.setLon(String.valueOf(templon));
 
         }
-
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -59,9 +54,7 @@ public class TableController {
         for(int i = 0; i<json.getAsJsonArray("array").size();i++) {
             String idStation = json.getAsJsonArray("array").get(i).getAsJsonObject().get("id_stacji").toString();
             idStation = idStation.replaceAll("\"","");
-            //String z = ;
-           // idStation = idStation.replaceAll("\\\\","");
-
+            idStation = idStation.replaceAll("\\\\","");
             String stationName = json.getAsJsonArray("array").get(i).getAsJsonObject().get("stacja").toString();
             stationName = stationName.replaceAll("\"","");
             String date = json.getAsJsonArray("array").get(i).getAsJsonObject().get("data_pomiaru").toString();
@@ -106,22 +99,12 @@ public class TableController {
             CurrentWeather currentWeather = new CurrentWeather(idStation, stationName, date, time, temperature, windSpeed, humidity, rainfall, pressure, lat, lon);
             table.currentWeather.add(currentWeather);
         }
-        //tableCurrentWeather.listOfStation = table.listOfStation;
-
-       // String text = edit2.getKod() +" "+ edit2.getNazwa_stacji()+" "+edit2.getLat()+" "+edit2.getLon();
-        //String text = edit2.nazwa_stacji;
-        //JSONObject json = new JSONObject(edit2Repository.findAll());
-       // monthdataRepository.findAll().forEach(table.monthdata::add);
         model.addAttribute("index",table);
         return "index";
     }
 
     @PostMapping("/graphs")
     public String greetingSubmit(Model model, @ModelAttribute Table table2) {
-        //greeting.addNumber();
-        //String text = greeting.getSite(greeting.getUrl());
-       // greeting.setTitle(text);
-      // table2=table;
         table2.listOfStationForMonthdata = table.listOfStationForMonthdata;
         for(Monthdata i: table.monthdata) {
             if(i.getNazwa_stacji().toLowerCase().equals(table2.stationName.toLowerCase()) && i.getRok().equals(table2.year)){
@@ -145,17 +128,12 @@ public class TableController {
         table = xxx();
         table2 = zzz();
         table2.listOfStationForYearData = table.listOfStationForMonthdata;
-        //table2.listOfStationForYearData = table.listOfStationForMonthdata;
-
-
         for(YearData i: table2.tableYear) {
             if(i.getNazwa_stacji().equals(table2.stationName)) {
                 table2.dataSingleStationYear.add(i);
             }
         }
         tableYearr = table2;
-
-
         model.addAttribute("year",table2);
         return "year";
     }
@@ -177,9 +155,6 @@ public class TableController {
         table2 = xxx();
         table = table2;
         for(Monthdata i: table.monthdata) {
-           // if(i.getNazwa_stacji().toLowerCase().equals(table2.stationName.toLowerCase()) && i.getRok().equals(table2.year)){
-             //   table2.dataSingleStation.add(i);
-            //}
             if(i.getNazwa_stacji().toLowerCase().equals(table2.stationName2.toLowerCase()) && i.getRok().equals(table2.year2)){
                 table2.dataSingleStation2.add(i);
             }
@@ -226,8 +201,6 @@ public class TableController {
         Request request = new Request.Builder()
                 .url("https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid=73e8a7db4bbec721a3c1e9623edd0093")
                 .get()
-                //.addHeader("x-rapidapi-host", "coronavirus-monitor.p.rapidapi.com")
-                //.addHeader("x-rapidapi-key", "2c73e1dc78msh14de78fe93c6aa8p1cc091jsn2500814b47b2")
                 .build();
         okhttp3.ResponseBody responseBody = client.newCall(request).execute().body();
         JSONObject json = new JSONObject(responseBody.string());
